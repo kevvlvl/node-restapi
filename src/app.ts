@@ -1,11 +1,14 @@
 import express from "express";
 import * as bodyParser from "body-parser";
 import { HealthRoute } from "./routes/health-route";
+import { ProductRoute } from "./routes/product-route";
 
 class Application {
 
     public expressApp: express.Application;
+
     private healthRoute: HealthRoute;
+    private productRoute: ProductRoute;
 
     constructor() {
         this.expressApp = express();
@@ -13,6 +16,9 @@ class Application {
 
         this.healthRoute = new HealthRoute();
         this.healthRoute.route(this.expressApp);
+
+        this.productRoute = new ProductRoute();
+        this.productRoute.route(this.expressApp);
     }
 
     private configure(): void {
